@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,18 +20,33 @@ public class MainActivity extends AppCompatActivity {
     EditText txtTitle;
     EditText txtDescription;
     EditText txtPrice;
+    TravelDeal deal;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference().child("traveldeals");
+        FirebaseUtil.openReference("traveldeals");
+        firebaseDatabase = FirebaseUtil.firebaseDatabase;
+        databaseReference = FirebaseUtil.databaseReference;
     
         txtTitle = findViewById(R.id.txtTitle);
         txtDescription = findViewById(R.id.txtDescription);
         txtPrice = findViewById(R.id.txtPrice);
+        
+        Intent intent = getIntent();
+        TravelDeal deal = (TravelDeal) intent.getSerializableExtra("Deal");
+        
+        if(deal == null){
+            deal = new TravelDeal();
+        }
+    
+        this.deal = deal;
+        txtTitle.setText(deal.getTitle());
+        txtDescription.setText(deal.getDescription());
+        txtPrice.setText(deal.getPrice());
+        
     }
     
     @Override
@@ -49,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
             saveDeal();
             clean();
             return true;
+        } else if(item.getItemId() == R.id.delete_deal){
+            deleteDeal();
+            Toast.makeText(this, "Deal was successfully deleted", Toast.LENGTH_SHORT).show();
+            backToList();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -61,14 +82,28 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void saveDeal() {
-        String title = txtTitle.getText().toString();
-        String  description = txtDescription.getText().toString();
-        String price = txtPrice.getText().toString();
-        
-        TravelDeal deal = new TravelDeal(title,description,price);
-        databaseReference.push().setValue(deal);
-        Toast.makeText(this, "Deal was successfully added", Toast.LENGTH_SHORT).show();
-        
+        deal.setTitle(txtTitle.getText().toString());
+        deal.setDescription(txtDescription.getText().toString());
+        deal.setPrice(txtPrice.getText().toString());
+        if(deal.getId() == null){
+            databaseReference.push().setValue(deal);
+            Toast.makeText(this, "Deal was successfully added", Toast.LENGTH_SHORT).show();
+        } else {
+            databaseReference.child(deal.getId()).setValue(deal);
+        }
         
     }
+    
+    private void deleteDeal() {
+        if(deal == null){
+            Toast.makeText(this, "please save deal before deleting", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        databaseReference.child(deal.getId()).removeValue();
+    }
+    
+    private void backToList(){
+        startActivity(new Intent(this, ListDealActivity.class));
+    }
+    
 }

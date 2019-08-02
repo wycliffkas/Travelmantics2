@@ -4,6 +4,11 @@
 
     <item
         android:id="@+id/save_deal"
-        android:title="Save"
+        android:title="@string/save"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/delete_deal"
+        android:title="@string/delete"
+        app:showAsAction="never"/>
 </menu>
