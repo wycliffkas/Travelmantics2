@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/tripTitle"
+        android:id="@+id/txtTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/tripCost"
+        android:id="@+id/txtPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -36,10 +36,10 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tripTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
 
     <EditText
-        android:id="@+id/tripDescription"
+        android:id="@+id/txtDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -53,7 +53,7 @@
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tripCost" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
 
     <Button
         android:id="@+id/button"
@@ -66,7 +66,7 @@
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tripDescription"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription"
         tools:text="@string/select_image" />
 
     <ImageView
