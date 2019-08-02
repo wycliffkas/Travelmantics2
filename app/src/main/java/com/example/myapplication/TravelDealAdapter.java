@@ -25,10 +25,12 @@ public class TravelDealAdapter extends RecyclerView.Adapter<TravelDealAdapter.De
     ArrayList<TravelDeal> deals;
     
     public TravelDealAdapter(){
-        FirebaseUtil.openReference("traveldeals");
+//        FirebaseUtil.openReference("traveldeals", this);
         firebaseDatabase = FirebaseUtil.firebaseDatabase;
         databaseReference = FirebaseUtil.databaseReference;
+        
         deals = FirebaseUtil.deals;
+        
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

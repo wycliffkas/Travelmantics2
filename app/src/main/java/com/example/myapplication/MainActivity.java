@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        FirebaseUtil.openReference("traveldeals");
+//        FirebaseUtil.openReference("traveldeals", this);
         firebaseDatabase = FirebaseUtil.firebaseDatabase;
         databaseReference = FirebaseUtil.databaseReference;
     
@@ -54,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
         
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+        if(FirebaseUtil.isAdmin){
+            menu.findItem(R.id.delete_deal).setVisible(true);
+            menu.findItem(R.id.save_deal).setVisible(true);
+            enableEditTexts(true);
+        } else {
+            menu.findItem(R.id.delete_deal).setVisible(false);
+            menu.findItem(R.id.save_deal).setVisible(false);
+            enableEditTexts(false);
+        }
         return true;
         
     }
@@ -104,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
     
     private void backToList(){
         startActivity(new Intent(this, ListDealActivity.class));
+    }
+    
+    private void enableEditTexts(boolean isEnabled){
+        txtPrice.setEnabled(isEnabled);
+        txtDescription.setEnabled(isEnabled);
+        txtTitle.setEnabled(isEnabled);
+    
     }
     
 }
