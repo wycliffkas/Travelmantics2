@@ -4,4 +4,10 @@
     <string name="trip_price">Price</string>
     <string name="trip_decription">Description</string>
     <string name="select_image">SELECT IMAGE</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="price">price</string>
+    <string name="image_for_deal">image for deal</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
 </resources>
