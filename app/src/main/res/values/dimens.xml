@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standard_dp">8dp</dimen>
+    <dimen name="large_dp">56dp</dimen>
+    <dimen name="small_text_size">24sp</dimen>
+    <dimen name="large_text_size">18sp</dimen>
+    <dimen name="small_dp">16dp</dimen>
+    <dimen name="very_large_dp">40dp</dimen>
+</resources>
