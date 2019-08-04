@@ -1,5 +1,5 @@
 # Travelmantics2
-An app where you can search and explore 40 million+ wikipedia articles
+An Android application for travel deals
 
 <p float="left">
 <img src="https://github.com/wycliffkas/Travelmantics2/blob/master/screenshots/screenshot1.png" width="250" height="400" />
