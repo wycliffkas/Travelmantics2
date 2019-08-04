@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageDeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -26,7 +26,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/title"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageDeal"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -38,7 +38,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/description"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageDeal"
         app:layout_constraintTop_toBottomOf="@+id/dealTitle" />
 
     <TextView
