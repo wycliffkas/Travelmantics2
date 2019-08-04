@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     EditText txtPrice;
     TravelDeal deal;
     ImageView imageView;
+    ImageView imageDeal;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         txtDescription = findViewById(R.id.txtDescription);
         txtPrice = findViewById(R.id.txtPrice);
         imageView = findViewById(R.id.image);
+        imageDeal = findViewById(R.id.imageDeal);
         
         Intent intent = getIntent();
         TravelDeal deal = (TravelDeal) intent.getSerializableExtra("Deal");
@@ -115,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         txtDescription.setText("");
         txtPrice.setText("");
         txtTitle.requestFocus();
+        imageDeal.setImageDrawable(null);
     }
     
     private void saveDeal() {
@@ -137,6 +141,22 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         databaseReference.child(deal.getId()).removeValue();
+        
+        if(deal.getImageName() != null && deal.getImageName().isEmpty() == false){
+            StorageReference picRef =  FirebaseUtil.storage.getReference().child(deal.getImageName());
+            picRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d("Delete Image", "Image Successfully Deleted");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.d("Delete Image", e.getMessage());
+                }
+            });
+            
+        }
     }
     
     private void backToList(){
@@ -160,12 +180,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     Task<Uri> uriTask = task.getResult().getStorage().getDownloadUrl();
-                    Task<String> uriName = task.getResult().getStorage().getPath();
                     while(!uriTask.isComplete());
                     String url = uriTask.getResult().toString();
-                    String pictureName = uriTask.getResult().toString();
+                    String pictureName = task.getResult().getStorage().getPath();;
                     deal.setImageUrl(url);
-                    deal.setImageName();
+                    deal.setImageName(pictureName);
                     showImage(url);
                     
                 }
