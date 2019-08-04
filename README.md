@@ -32,6 +32,6 @@ You need the following :
 
 - Change directory into "Travelmantics", by running the command below.
 
-   cd wikipedia
+   cd Travelmantics2
 
 - Then open your project in Android Studio and click Run.
