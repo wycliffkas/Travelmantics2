@@ -2,9 +2,9 @@
 An app where you can search and explore 40 million+ wikipedia articles
 
 <p float="left">
-<img src="https://github.com/wycliffkas/Wikipedia/blob/master/shot1.png" width="250" height="400" />
-<img src="https://github.com/wycliffkas/Wikipedia/blob/master/shot2.png" width="250" height="400" />
-<img src="https://github.com/wycliffkas/Wikipedia/blob/master/shot3.png" width="250" height="400" />
+<img src="https://github.com/wycliffkas/Travelmantics2/blob/master/screenshot1.png" width="250" height="400" />
+<img src="https://github.com/wycliffkas/Travelmantics2/blob/master/Screenshot2png.png" width="250" height="400" />
+<img src="https://github.com/wycliffkas/Travelmantics2/blob/master/Screenshot3.png" width="250" height="400" />
 </p>
 
 ### Technologies Used
